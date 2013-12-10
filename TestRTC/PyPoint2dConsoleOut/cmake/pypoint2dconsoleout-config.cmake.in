@@ -1,0 +1,54 @@
+# PyPoint2dConsoleOut CMake config file
+#
+# This file sets the following variables:
+# PyPoint2dConsoleOut_FOUND - Always TRUE.
+# PyPoint2dConsoleOut_INCLUDE_DIRS - Directories containing the PyPoint2dConsoleOut include files.
+# PyPoint2dConsoleOut_IDL_DIRS - Directories containing the PyPoint2dConsoleOut IDL files.
+# PyPoint2dConsoleOut_LIBRARIES - Libraries needed to use PyPoint2dConsoleOut.
+# PyPoint2dConsoleOut_DEFINITIONS - Compiler flags for PyPoint2dConsoleOut.
+# PyPoint2dConsoleOut_VERSION - The version of PyPoint2dConsoleOut found.
+# PyPoint2dConsoleOut_VERSION_MAJOR - The major version of PyPoint2dConsoleOut found.
+# PyPoint2dConsoleOut_VERSION_MINOR - The minor version of PyPoint2dConsoleOut found.
+# PyPoint2dConsoleOut_VERSION_REVISION - The revision version of PyPoint2dConsoleOut found.
+# PyPoint2dConsoleOut_VERSION_CANDIDATE - The candidate version of PyPoint2dConsoleOut found.
+
+message(STATUS "Found PyPoint2dConsoleOut-@PROJECT_VERSION@")
+set(PyPoint2dConsoleOut_FOUND TRUE)
+
+find_package(<dependency> REQUIRED)
+
+#set(PyPoint2dConsoleOut_INCLUDE_DIRS
+#    "@CMAKE_INSTALL_PREFIX@/include/@PROJECT_NAME_LOWER@-@PROJECT_VERSION_MAJOR@"
+#    ${<dependency>_INCLUDE_DIRS}
+#    )
+#
+#set(PyPoint2dConsoleOut_IDL_DIRS
+#    "@CMAKE_INSTALL_PREFIX@/include/@PROJECT_NAME_LOWER@-@PROJECT_VERSION_MAJOR@/idl")
+set(PyPoint2dConsoleOut_INCLUDE_DIRS
+    "@CMAKE_INSTALL_PREFIX@/include/@CPACK_PACKAGE_FILE_NAME@"
+    ${<dependency>_INCLUDE_DIRS}
+    )
+set(PyPoint2dConsoleOut_IDL_DIRS
+    "@CMAKE_INSTALL_PREFIX@/include/@CPACK_PACKAGE_FILE_NAME@/idl")
+
+
+if(WIN32)
+    set(PyPoint2dConsoleOut_LIBRARIES
+        "@CMAKE_INSTALL_PREFIX@/@LIB_INSTALL_DIR@/@CMAKE_SHARED_LIBRARY_PREFIX@@PROJECT_NAME_LOWER@@CMAKE_STATIC_LIBRARY_SUFFIX@"
+        ${<dependency>_LIBRARIES}
+        )
+else(WIN32)
+    set(PyPoint2dConsoleOut_LIBRARIES
+        "@CMAKE_INSTALL_PREFIX@/@LIB_INSTALL_DIR@/@CMAKE_SHARED_LIBRARY_PREFIX@@PROJECT_NAME_LOWER@@CMAKE_SHARED_LIBRARY_SUFFIX@"
+        ${<dependency>_LIBRARIES}
+        )
+endif(WIN32)
+
+set(PyPoint2dConsoleOut_DEFINITIONS ${<dependency>_DEFINITIONS})
+
+set(PyPoint2dConsoleOut_VERSION @PROJECT_VERSION@)
+set(PyPoint2dConsoleOut_VERSION_MAJOR @PROJECT_VERSION_MAJOR@)
+set(PyPoint2dConsoleOut_VERSION_MINOR @PROJECT_VERSION_MINOR@)
+set(PyPoint2dConsoleOut_VERSION_REVISION @PROJECT_VERSION_REVISION@)
+set(PyPoint2dConsoleOut_VERSION_CANDIDATE @PROJECT_VERSION_CANDIDATE@)
+
